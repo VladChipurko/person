@@ -23,4 +23,14 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 	
 	@Query("select new telran.java2022.person.dto.CityPopulationDto(p.address.city, count(p)) from Person p group by p.address.city order by count(p) desc")
 	List<CityPopulationDto> getCitiesPopulation();
+	
+	@Query("select p from Person p where p.salary between :min and :max")
+	List<Person> FindEmployeesBySalary(@Param("min") int min,@Param("max") int max);
+	
+	@Query("select p from Person p where p.kindergarten != 'null'")
+	List<Person> getChildren();
+	
+//	это для join стратегии
+//	@Query("select c from Child c")
+//	List<Person> getChildren();
 }
