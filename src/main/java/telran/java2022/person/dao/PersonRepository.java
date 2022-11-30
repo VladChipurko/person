@@ -26,11 +26,14 @@ public interface PersonRepository extends CrudRepository<Person, Integer> {
 	
 	@Query("select p from Person p where p.salary between :min and :max")
 	List<Person> FindEmployeesBySalary(@Param("min") int min,@Param("max") int max);
+//	List<Employee> findSalaryBetween(int min, int max);  --- correct query
 	
 	@Query("select p from Person p where p.kindergarten != 'null'")
 	List<Person> getChildren();
+//	List<Child> findChildrenBy();  --- correct query
 	
 //	это для join стратегии
 //	@Query("select c from Child c")
 //	List<Person> getChildren();
+	
 }
